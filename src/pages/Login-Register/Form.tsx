@@ -43,7 +43,7 @@ const Form = ( { title,Lable, placeholderUsername, placeholderPwd, needEmail, Qu
 
     const validateUsername = inputs.username.length < 3 ? 'Username must be more than two character!' : inputs.username.replace(/[^a-z^A-Z^0-9]/g, '') !== inputs.username ? 'Username must contain only alphabets & numbers!' : ''
     const validateEmail = !/^[a-z0-9._]+@[gmail|yahoo|outlook]+.com$/.test(inputs.email) ? 'Invalid email!' : ''
-    const validPassword =  inputs.pwd.length < 7 ?  'Password must be greater then 6 characters!' : inputs.pwd !== inputs.Cpwd ? 'Mismatched Password!' : ''
+    const validPassword =  inputs.pwd.length < 7 ?  'Password must be more than 6 characters!' : inputs.pwd !== inputs.Cpwd ? 'Mismatched Password!' : ''
 
     const handleErr = inputs.username && inputs.email && inputs.pwd && inputs.Cpwd ? validateUsername || validateEmail || validPassword : 'Empty Inputs!'
 
