@@ -1,4 +1,4 @@
-import { Logo, Xicon } from '@/components/useimg'
+import { Logo } from '@/components/useimg'
 import { ArrowRightOnRectangleIcon, Bars3Icon, BriefcaseIcon, CalendarDaysIcon, CheckCircleIcon, ClockIcon, Cog8ToothIcon, MagnifyingGlassIcon, NewspaperIcon, PencilSquareIcon, PresentationChartBarIcon, StarIcon, TrashIcon, UserCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import TaskContent from '@/components/TaskContent'
 import AddTask from '@/components/AddTask'
