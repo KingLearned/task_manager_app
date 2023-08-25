@@ -98,10 +98,10 @@ const Form = ( { title,Lable, placeholderUsername, placeholderPwd, needEmail, Qu
           <input type="password" name='pwd' className={inputStyle}  placeholder={placeholderPwd} onChange={handleChange} />
           {placeholderUsername && <input type="password" name='Cpwd' className={inputStyle}  placeholder='Confirm Password' onChange={handleChange} />
           }
-          <p className='py-2 h-[25px] text-danger'>{
+          <p className='py-2 min-h-[25px] text-danger text-center'>{
           err && err 
           }</p>
-          <button className='rounded-md w-full font-bold bg-primary-500 text-white px-10 py-2 my-2 mt-5 hover:bg-primary-100' onClick={handleSubmit}>{Btn}</button>
+          <button className='rounded-md w-full font-bold bg-primary-500 text-white px-10 py-2 hover:bg-primary-100' onClick={handleSubmit}>{Btn}</button>
           <span className={justfyCenter}>{Que} <Link className='text-primary-500 font-bold' to={`/${navTo.toLocaleLowerCase()}`}>{navTo}</Link></span>
         </form>
       </div>
