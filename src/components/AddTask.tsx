@@ -24,8 +24,6 @@ const AddTask = ({closeAddtask}:Props) => {
     const [showMsg, setShowMsg] = useState('')
 
     const navigate = useNavigate()
-    closeAddtask()
-
 
     const handleTaskSubmit = async (e:any) => {
         e.preventDefault()
