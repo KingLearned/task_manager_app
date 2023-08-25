@@ -89,9 +89,9 @@ const Form = ( { title,Lable, placeholderUsername, placeholderPwd, needEmail, Qu
 
   return (
     <BodyFramer>
-      <div className={` ${justfyCenter} mx-5`}>
+      <div className={` ${justfyCenter}`}>
         <h1 className={`font-[900] text-[20px] my-3 text-white`}>{Lable}</h1>
-        <form className={`${justfyCenter} bg-white p-5 w-full sm:w-[70%] md:w-[40%]  rounded-md`} action="">
+        <form className={`${justfyCenter} bg-white p-5 w-full sm:w-[90%] md:w-[40%]  rounded-md`} action="">
           <h1 className='font-bold text-2xl'>{title}</h1>
           {placeholderUsername && <input type="text" name='username' className={inputStyle} placeholder={placeholderUsername} onChange={handleChange} />}
           <input type="email" name='email' className={inputStyle} placeholder='Email' onChange={handleChange} />
