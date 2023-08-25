@@ -11,8 +11,7 @@ Welcome to the documentation for your Task Management Web Application. This read
 - [Components](#components)
 
 ## Description
-
-Your Task Management Web Application is designed to help users manage their tasks efficiently. It includes features like user registration, login, a dashboard to view and manage tasks, and more.
+This Task Management Web Application is designed to help users manage their tasks efficiently. It includes features like user registration, login, a dashboard to view and manage tasks, and more.
 
 ## Installation and Usage
 
