@@ -23,3 +23,23 @@ To start the development server and run the application, use the following comma
     npm install
 3. To start the development server and run the application, use the following command:
     npm run dev
+
+## Routes
+The application uses React Router for navigation. Here are the available routes:
+
+* `/` - Home page
+* `/`dashboard - Dashboard for managing tasks
+* `/`register - User registration page
+* `/`login - User login page
+
+# Components
+## App.tsx
+The App component serves as the entry point for the application. It sets up the routing using react-router-dom and renders different components based on the current route.
+
+## Pages
+- Home: Landing page of the application.
+- Dashboard: Page to view and manage tasks.
+- Register: User registration page.
+- Login: User login page.
+Router Configuration
+The routing configuration is defined in App.tsx using the createBrowserRouter function. Each route is associated with a specific path and component to render.
