@@ -1,6 +1,6 @@
 # Task Management Web Application Readme
 
-Welcome to the documentation for your Task Management Web Application. This readme file will provide an overview of the project structure, its components, and instructions for setting up and running the application.
+This readme file will provide an overview of the project structure, its components, and instructions for setting up and running the application.
 
 ## Table of Contents
 
