@@ -28,12 +28,13 @@ const DashBoard = () => {
     const activeLine = 'bg-white text-primary-500 p-2 rounded-md'
     const [activeNav,setActiveNav] = useState<string|null>('All Task')
 
-    const [activeTask,setActiveTask] = useState<string|null>(null) 
+    const [activeTask,setActiveTask] = useState<number>() 
     const [selectTask,setSelectTask] = useState(Object)
     
     const [viewContent,setViewContent] = useState<Boolean>(false)
     const [query,setQuery] = useState<Boolean>(false)
     const [findTask,setfindTask] = useState<string>()
+    const [findCheck,setfindCheck] = useState<Boolean>(false)
 
     // GET ALL TASKS RELATING TO THE USER
     useEffect(() => {
@@ -57,15 +58,16 @@ const DashBoard = () => {
     }
     // FUNCTION FOR QUERING THE API
     const filterTask = async () => {
+        
         try{
             const res = await axios.get(`${Proxy}/tasks/`,{ params:{ id:currentUser?.id, search:findTask } })
+            setfindCheck(true)
             return setTask(res.data)
         }catch(err){ console.log(err) }
     }
 
     const rendTask = (eachTask:taskContentType) => {
         const trueDate = new Date(Number(eachTask.date)).toLocaleString('en-US', {weekday:'short',month:'short',year:'numeric',hour:'numeric',minute:'numeric',hour12:true})
-
         const deleteTask = () => { 
             try {
                 axios.delete(`${Proxy}/tasks/${eachTask.id}`) 
@@ -84,7 +86,7 @@ const DashBoard = () => {
                     <div className='md:flex'>
                         <h1 className='text-gray-500 text-1xl mr-5'>Total sub tasks <span className='text-gray-300'>({`${eachTask.subtask.length}`})</span></h1>
                         <h1 className='flex text-gray-500 text-1xl mr-5'><ClockIcon className='h-[22px] mr-3'/><span className='text-gray-300'>{trueDate}</span></h1>
-                        <h1 className='flex text-gray-500 text-1xl mr-5'><NewspaperIcon className='h-[22px] mr-3'/><span className='text-gray-300'>{eachTask.note.slice(0,25)}</span></h1>
+                        <h1 className='flex text-gray-500 text-1xl mr-5'><NewspaperIcon className='h-[22px] mr-3'/><span className='text-gray-300 capitalize'>{eachTask.note.slice(0,25)}</span></h1>
                     </div>
                 </div>
                 <div className='flex items-center justify-end'>
@@ -92,8 +94,7 @@ const DashBoard = () => {
                     <TrashIcon className='h-[22px]' onClick={() => {deleteTask()}} />
                 </div>
             </div>
-        )
-        
+        )  
     }
 
     return (
@@ -153,7 +154,7 @@ const DashBoard = () => {
             <div className={`w-full bg-gray-50 md:p-5 p-1 ${isScreens1000px ? 'overflow-auto h-[99vh]' : 'min-h-[99vh]'}`}>
                 <div className='bg-primary-500 text-white rounded-md flex p-2'>
                     <MagnifyingGlassIcon className='h-[22px] mr-2'/>
-                    <form className='flex w-full' onSubmit={(e) => {e.preventDefault(),filterTask()}}><input className='outline-none bg-transparent w-full' value={!query ? '' : findTask} onChange={(e) => {e.target.value.length > 0 ? (setQuery(true),setfindTask(e.target.value)) : setQuery(false)}} type="text" placeholder='Search' /></form>
+                    <form className='flex w-full' onSubmit={(e) => {e.preventDefault(),filterTask()}}><input className='outline-none bg-transparent w-full' value={!query ? '' : findTask} onChange={(e) => {e.target.value.length > 0 ? (setQuery(true),setfindCheck(false),setfindTask(e.target.value)) : (fetchNewtask(),setQuery(false))}} type="text" placeholder='Search' /></form>
                     {query && <XMarkIcon className='h-[22px] mr-2' onClick={() => {fetchNewtask(),setQuery(false)}} />}
                 </div>
                 <div className='mt-5'>
@@ -164,13 +165,14 @@ const DashBoard = () => {
                     {/* RENDERING OF CATEGORIZED TASK OF USER */}
                     <div className='w-full mt-5'>
                         {
-                            allTask ? allTask.map(div => (activeNav == 'All Task' || activeNav  == null ?
-                                rendTask(div)
-                                : div.cat == activeNav &&
-                                rendTask(div)
-                            ))
+                            allTask ?
+                            allTask?.length as never > 0 ? activeNav == 'All Task' || activeNav  == null ? allTask.map(eachTask => ( rendTask(eachTask) )) : 
+                            allTask.some(eachTask => eachTask.cat === activeNav) ? allTask.map(eachTask => ( eachTask.cat === activeNav && rendTask(eachTask) )) :
+                            <h1 className='rounded-md shadow-md text-center p-5 w-full cursor-pointer bg-white text-2xl font-bold'>No task on this category!</h1>
                             :
-                            <h1 className='rounded-md shadow-md text-center p-5 w-full cursor-pointer bg-white text-2xl font-bold'>No task added yet!</h1>
+                            <h1 className='rounded-md shadow-md text-center p-5 w-full cursor-pointer bg-white text-2xl font-bold'>{findTask ? <span>{!findCheck ? 'Searching for key word' : 'No search result for the key word'} "<i className='text-primary-500'>{findTask}</i>"</span> : 'You have not created any task yet!'}</h1>
+                            :
+                            <h1 className='rounded-md shadow-md text-center p-5 w-full cursor-pointer bg-white text-2xl'>Loading...</h1>
                         }
                     </div>
                 </div>

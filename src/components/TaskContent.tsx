@@ -71,7 +71,7 @@ const TaskContent = ({showContent}:Props) => {
                 {showContent.subtask.map((each:subtask) => (
                     <div key={each.id}>
                         <input type="radio" checked={false} readOnly className='mr-3' name={each.descrp} id="" value={each.descrp} />
-                        <label htmlFor={each.descrp}>{each.descrp}</label>
+                        <label htmlFor={each.descrp} className='capitalize'>{each.descrp}</label>
                     </div>
                 ))}
             </>
@@ -102,7 +102,7 @@ const TaskContent = ({showContent}:Props) => {
                     {taskEdit ? 
                         editTitle()
                     :
-                        <h1 className='font-bold border-b-[2px] w-[85%] flex'>{tasktitle} <PencilSquareIcon className='h-[20px] ml-2 cursor-pointer' onClick={() => {setTaskEdit(true)}}/></h1>
+                        <h1 className='font-bold border-b-[2px] w-[85%] flex capitalize'>{tasktitle} <PencilSquareIcon className='h-[20px] ml-2 cursor-pointer' onClick={() => {setTaskEdit(true)}}/></h1>
                     }
                 </div>
                 <div className='py-3 border-b-[2px]'>
@@ -125,7 +125,7 @@ const TaskContent = ({showContent}:Props) => {
                             {makeEdit ? 
                                 editNote()
                             :
-                                <h1 className='text-gray-500 mt-3'>{newNote}</h1>
+                                <h1 className='text-gray-500 mt-3 capitalize'>{newNote}</h1>
                             }
                         </div>
                     </div>

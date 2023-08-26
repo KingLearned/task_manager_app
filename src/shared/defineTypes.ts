@@ -11,7 +11,7 @@ export type subtask = {
 }
 
 export type taskContentType = {
-    id:string,
+    id:number,
     cat:string,
     title:string,
     date:string,
