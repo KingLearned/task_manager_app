@@ -159,7 +159,7 @@ const DashBoard = () => {
                 </div>
                 <div className='mt-5'>
                     <div className='flex items-center'>
-                        <h1 className='font-bold mr-5'>TASKS</h1>
+                        <h1 className='font-bold mr-5'>TASKS <span className='text-primary-500 font-[100]'>{`> ${activeNav}`}</span></h1>
                         <button className='text-white font-bold bg-primary-500 px-3 py-1 rounded-md' onClick={() => {setCreatTask(true)}}>+ Add Task</button>
                     </div>
                     {/* RENDERING OF CATEGORIZED TASK OF USER */}
